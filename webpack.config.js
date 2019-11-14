@@ -16,7 +16,11 @@ module.exports = {
           loader: "babel-loader",
           options: {
             presets: ["@babel/preset-env", "@babel/preset-react"],
-            plugins: ["@babel/plugin-syntax-dynamic-import"]
+            plugins: [
+              "@babel/plugin-syntax-dynamic-import", // import '.less'
+              "@babel/plugin-proposal-class-properties", // arrow function in class components
+              "@babel/plugin-transform-runtime" //asyn await
+            ]
           }
         }
       },
@@ -45,5 +49,17 @@ module.exports = {
   optimization: {
     minimize: true //开启压缩优化包体大小 根据mode自动生效
   },
-  plugins: [new HtmlWebpackPlugin({ template: "./src/index.html" })]
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./src/index.html",
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        useShortDoctype: true
+      }
+    })
+  ]
 };
