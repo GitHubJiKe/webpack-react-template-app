@@ -2,7 +2,7 @@
  * @Author: peter.yuan
  * @Date: 2019-11-14 15:58:14
  * @Last Modified by: peter.yuan
- * @Last Modified time: 2019-11-14 17:16:57
+ * @Last Modified time: 2019-11-14 18:33:30
  */
 
 import React, { Component } from "react";
@@ -12,18 +12,19 @@ import "./App.less";
 import Layout from "./components/Layout";
 import Page1 from "./pages/Page1";
 import Page2 from "./pages/Page2";
-import { testAsyncFun } from "./utils";
+import { fetchProvinces, showAlert } from "./utils";
 
 const { Header, Footer, Content } = Layout;
 export const routeHistory = createHashHistory();
 
 export default class App extends Component {
   state = {
-    data: []
+    provinces: []
   };
+
   async componentDidMount() {
-    const { data } = await testAsyncFun();
-    this.setState({ data });
+    const provinces = await fetchProvinces();
+    this.setState({ provinces });
   }
 
   render() {
@@ -31,7 +32,7 @@ export default class App extends Component {
       <Layout>
         <Header>webpack react template app</Header>
         <Content>
-          <h3>{this.state.data}</h3>
+          <h3>provinces count:{this.state.provinces.length}</h3>
           <Router history={routeHistory}>
             <Route exact path="/" component={Page1}></Route>
             <Route path="/page1" component={Page1}></Route>
