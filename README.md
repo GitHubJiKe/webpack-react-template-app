@@ -59,3 +59,4 @@
 - 路由 `react-router, react-route-dom, history`
 - 请求 `async await, promise, axios`
 - 状态管理 `redux, react-redux, redux-thunk`
+- 数据持久化 `redux-persist`

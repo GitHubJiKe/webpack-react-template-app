@@ -2,7 +2,7 @@
  * @Author: peter.yuan
  * @Date: 2019-11-14 15:58:39
  * @Last Modified by: peter.yuan
- * @Last Modified time: 2019-11-15 11:39:41
+ * @Last Modified time: 2019-11-15 15:35:54
  */
 import React, { Component } from "react";
 import Button from "../../components/Button";
@@ -14,7 +14,7 @@ class Page1 extends Component {
   }
 
   componentDidMount() {
-    this.props.changePage1Title("Hello Page1");
+    // this.props.changePage1Title("Hello Page1"); 为了体现数据持久化
   }
 
   handleChangeTitle = () => this.props.changePage1Title(Date.now());

@@ -2,7 +2,7 @@
  * @Author: peter.yuan
  * @Date: 2019-11-14 15:58:46
  * @Last Modified by: peter.yuan
- * @Last Modified time: 2019-11-15 11:40:20
+ * @Last Modified time: 2019-11-15 15:34:35
  */
 import React, { useEffect } from "react";
 import Button from "../../components/Button";
@@ -11,7 +11,7 @@ import { connect } from "react-redux";
 
 const Page2 = props => {
   useEffect(() => {
-    props.changePage2Title("Hello Page2");
+    // props.changePage2Title("Hello Page2"); 为了体现数据持久化
     return () => {};
   }, []);
 
