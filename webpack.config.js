@@ -44,7 +44,8 @@ module.exports = {
     contentBase: path.join(__dirname, "dist"),
     compress: true,
     port: 9000,
-    open: true
+    open: true,
+    hot: true
   },
   optimization: {
     minimize: true //开启压缩优化包体大小 根据mode自动生效
