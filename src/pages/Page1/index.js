@@ -23,7 +23,7 @@ class Page1 extends Component {
 
   render() {
     return (
-      <div style={{ backgroundColor: "yellow", width: "100%", height: "100%" }}>
+      <div style={{ backgroundColor: "yellow", width: "100%" }}>
         <h1>{this.props.page1.title}</h1>
         <Button type="primary" onClick={this.handleChangeTitle}>
           change title
