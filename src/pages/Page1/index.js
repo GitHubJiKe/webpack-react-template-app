@@ -2,15 +2,19 @@
  * @Author: peter.yuan
  * @Date: 2019-11-14 15:58:39
  * @Last Modified by: peter.yuan
- * @Last Modified time: 2019-11-15 15:35:54
+ * @Last Modified time: 2019-11-15 17:59:55
  */
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import Button from "../../components/Button";
 import * as actions from "../../store/actions/page1";
-import { connect } from "react-redux";
+import PageContainer from "../../components/PageContainer";
+
 class Page1 extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      name: "peter"
+    };
   }
 
   componentDidMount() {
@@ -23,15 +27,27 @@ class Page1 extends Component {
 
   render() {
     return (
-      <div style={{ backgroundColor: "yellow", width: "100%" }}>
-        <h1>{this.props.page1.title}</h1>
+      <Fragment>
+        <h1>
+          {this.props.page1.title}/{this.state.name}
+        </h1>
         <Button type="primary" onClick={this.handleChangeTitle}>
           change title
         </Button>
         <Button onClick={this.gotoPage2}>goto page2</Button>
-      </div>
+        <Button
+          onClick={() => {
+            this.setState({ name: Date.now() });
+          }}
+        >
+          change name
+        </Button>
+      </Fragment>
     );
   }
 }
-
-export default connect(state => ({ page1: state.page1 }), actions)(Page1);
+export default PageContainer(Page1, {
+  bgColor: "yellow",
+  stateKey: "page1",
+  actions
+});

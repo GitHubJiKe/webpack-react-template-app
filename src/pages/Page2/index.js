@@ -2,12 +2,12 @@
  * @Author: peter.yuan
  * @Date: 2019-11-14 15:58:46
  * @Last Modified by: peter.yuan
- * @Last Modified time: 2019-11-15 15:38:39
+ * @Last Modified time: 2019-11-15 17:47:45
  */
-import React, { useEffect } from "react";
+import React, { useEffect, Fragment } from "react";
 import Button from "../../components/Button";
 import * as actions from "../../store/actions/page2";
-import { connect } from "react-redux";
+import PageContainer from "../../components/PageContainer";
 
 const Page2 = props => {
   useEffect(() => {
@@ -20,12 +20,15 @@ const Page2 = props => {
   const changeTitle = () => props.changePage2Title(Date.now());
 
   return (
-    <div style={{ backgroundColor: "green", width: "100%" }}>
+    <Fragment>
       <h1>{props.page2.title}</h1>
       <Button onClick={changeTitle}>change title</Button>
       <Button onClick={gotoPage1}>goto page1</Button>
-    </div>
+    </Fragment>
   );
 };
-
-export default connect(state => ({ page2: state.page2 }), actions)(Page2);
+export default PageContainer(Page2, {
+  bgColor: "green",
+  stateKey: "page2",
+  actions
+});

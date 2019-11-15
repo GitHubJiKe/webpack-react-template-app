@@ -2,7 +2,7 @@
  * @Author: peter.yuan
  * @Date: 2019-11-15 11:28:34
  * @Last Modified by: peter.yuan
- * @Last Modified time: 2019-11-15 11:34:31
+ * @Last Modified time: 2019-11-15 16:56:27
  */
 import React from "react";
 import { Router, Route } from "react-router-dom";
@@ -26,7 +26,7 @@ const routes = [
   }
 ];
 
-const routeHistory = createHashHistory();
+export const routeHistory = createHashHistory();
 
 export default () => (
   <Router history={routeHistory}>
