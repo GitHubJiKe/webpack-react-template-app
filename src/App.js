@@ -2,47 +2,57 @@
  * @Author: peter.yuan
  * @Date: 2019-11-14 15:58:14
  * @Last Modified by: peter.yuan
- * @Last Modified time: 2019-11-14 19:18:01
+ * @Last Modified time: 2019-11-15 11:48:56
  */
 
-import React, { Component } from "react";
-import { Router, Route } from "react-router-dom";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { createHashHistory } from "history";
 import Layout from "./components/Layout";
-import Page1 from "./pages/Page1";
-import Page2 from "./pages/Page2";
-import fetchProvincesAction from "./store/actions/provinces";
+import * as actions from "./store/actions/app";
 import "./App.less";
+import RouterView from "./routes";
 
 const { Header, Footer, Content } = Layout;
-export const routeHistory = createHashHistory();
 
-class App extends Component {
-  async componentDidMount() {
-    this.props.fetchProvincesAction();
-  }
+const App = props => {
+  const fetchData = async () => {
+    await props.fetchProvincesAction();
+  };
 
-  render() {
-    return (
-      <Layout>
-        <Header>webpack react template app</Header>
-        <Content>
-          <h3>provinces count:{this.props.provinces.length}</h3>
-          <Router history={routeHistory}>
-            <Route exact path="/" component={Page1}></Route>
-            <Route path="/page1" component={Page1}></Route>
-            <Route path="/page2" component={Page2}></Route>
-          </Router>
-        </Content>
-        <Footer>@peter.yuan</Footer>
-      </Layout>
-    );
-  }
-}
-const mapStateToProps = state => {
-  return { ...state };
+  useEffect(() => {
+    fetchData();
+    return () => {};
+  }, []);
+
+  return (
+    <Layout>
+      <Header>webpack react template app</Header>
+      <Content>
+        {renderProvinces(props.app.provinces)}
+        <RouterView />
+      </Content>
+      <Footer>@peter.yuan</Footer>
+    </Layout>
+  );
 };
 
-const mapDispatchToProps = { fetchProvincesAction };
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+const provinceViewStyle = {
+  width: 250,
+  height: "100%",
+  backgroundColor: "red",
+  color: "white"
+};
+
+function renderProvinces(provinces) {
+  return (
+    <div style={provinceViewStyle}>
+      {provinces.map(p => (
+        <div key={p.id}>
+          {p.id} {p.label}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default connect(state => ({ app: state.app }), actions)(App);

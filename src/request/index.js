@@ -2,12 +2,12 @@
  * @Author: peter.yuan
  * @Date: 2019-11-14 18:26:38
  * @Last Modified by: peter.yuan
- * @Last Modified time: 2019-11-14 18:34:47
+ * @Last Modified time: 2019-11-14 19:38:27
  */
 import Axios from "axios";
 
 const request = Axios.create({
-  baseURL: "http://c1.boldseas.com",
+  baseURL: "https://c1.boldseas.com",
   timeout: 1000,
   headers: {
     "Content-Type": "application/json"

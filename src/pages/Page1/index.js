@@ -2,32 +2,36 @@
  * @Author: peter.yuan
  * @Date: 2019-11-14 15:58:39
  * @Last Modified by: peter.yuan
- * @Last Modified time: 2019-11-14 17:20:16
+ * @Last Modified time: 2019-11-15 11:39:41
  */
-import React from "react";
-import { showAlert } from "../../utils";
+import React, { Component } from "react";
 import Button from "../../components/Button";
-import { routeHistory } from "../../App";
+import * as actions from "../../store/actions/page1";
+import { connect } from "react-redux";
+class Page1 extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-const Page1 = () => (
-  <div style={{ backgroundColor: "yellow" }}>
-    <h1>Page1</h1>
-    <Button
-      type="primary"
-      onClick={() => {
-        showAlert("hello world");
-      }}
-    >
-      function test
-    </Button>
-    <Button
-      onClick={() => {
-        routeHistory.push("/page2");
-      }}
-    >
-      goto page2
-    </Button>
-  </div>
-);
+  componentDidMount() {
+    this.props.changePage1Title("Hello Page1");
+  }
 
-export default Page1;
+  handleChangeTitle = () => this.props.changePage1Title(Date.now());
+
+  gotoPage2 = () => this.props.history.push("/page2");
+
+  render() {
+    return (
+      <div style={{ backgroundColor: "yellow", width: "100%", height: "100%" }}>
+        <h1>{this.props.page1.title}</h1>
+        <Button type="primary" onClick={this.handleChangeTitle}>
+          change title
+        </Button>
+        <Button onClick={this.gotoPage2}>goto page2</Button>
+      </div>
+    );
+  }
+}
+
+export default connect(state => ({ page1: state.page1 }), actions)(Page1);
