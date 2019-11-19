@@ -2,7 +2,7 @@
  * @Author: peter.yuan
  * @Date: 2019-11-14 15:58:14
  * @Last Modified by: peter.yuan
- * @Last Modified time: 2019-11-15 17:16:59
+ * @Last Modified time: 2019-11-19 16:03:27
  */
 
 import React, { useEffect } from "react";
@@ -36,16 +36,9 @@ const App = props => {
   );
 };
 
-const provinceViewStyle = {
-  width: 250,
-  height: "100%",
-  backgroundColor: "red",
-  color: "white"
-};
-
 function renderProvinces(provinces) {
   return (
-    <div style={provinceViewStyle}>
+    <div className="provinces">
       {provinces.map(p => (
         <div key={p.id}>
           {p.id} {p.label}
