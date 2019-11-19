@@ -2,13 +2,13 @@
  * @Author: peter.yuan
  * @Date: 2019-11-14 15:58:46
  * @Last Modified by: peter.yuan
- * @Last Modified time: 2019-11-15 17:47:45
+ * @Last Modified time: 2019-11-19 16:13:53
  */
 import React, { useEffect, Fragment } from "react";
 import Button from "../../components/Button";
 import * as actions from "../../store/actions/page2";
 import PageContainer from "../../components/PageContainer";
-
+import driveCarUrl from "../../assets/images/drive_car2.jpg";
 const Page2 = props => {
   useEffect(() => {
     // props.changePage2Title("Hello Page2"); 为了体现数据持久化
@@ -22,6 +22,7 @@ const Page2 = props => {
   return (
     <Fragment>
       <h1>{props.page2.title}</h1>
+      <img src={driveCarUrl} />
       <Button onClick={changeTitle}>change title</Button>
       <Button onClick={gotoPage1}>goto page1</Button>
     </Fragment>

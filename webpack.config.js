@@ -40,6 +40,17 @@ module.exports = {
             loader: "postcss-loader"
           }
         ]
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              outputPath: "/assets/images"
+            }
+          }
+        ]
       }
     ]
   },

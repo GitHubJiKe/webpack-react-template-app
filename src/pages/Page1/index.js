@@ -2,13 +2,13 @@
  * @Author: peter.yuan
  * @Date: 2019-11-14 15:58:39
  * @Last Modified by: peter.yuan
- * @Last Modified time: 2019-11-15 17:59:55
+ * @Last Modified time: 2019-11-19 16:13:59
  */
 import React, { Component, Fragment } from "react";
 import Button from "../../components/Button";
 import * as actions from "../../store/actions/page1";
 import PageContainer from "../../components/PageContainer";
-
+import driveCarUrl from "../../assets/images/drive_car.jpg";
 class Page1 extends Component {
   constructor(props) {
     super(props);
@@ -31,6 +31,7 @@ class Page1 extends Component {
         <h1>
           {this.props.page1.title}/{this.state.name}
         </h1>
+        <img src={driveCarUrl} />
         <Button type="primary" onClick={this.handleChangeTitle}>
           change title
         </Button>
